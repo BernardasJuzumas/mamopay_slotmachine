@@ -69,13 +69,14 @@ the session are moved to their account.
 ## Backend
 Due to time constraints will do session name = username, to mock ability to come back to the session whenever. Purely for demo purposes only.
 ### Structure
- - app.py : flask init and endpoints
+ - app.py : flask init, session management and endpoints
  - config.py : game config + session config
  - game_logic.py : game logic
 ### Endpoints
  - /start_game (username): creates a new session with a username provided, if user exists - uses existing session
  - /roll (username): checks if session exists, enough credits to roll, rolls if so and updates funds. Returns relevant statuses.
  - /cash_out (username): if session exists - performs a cashout and deletes it.
+ - /get_session_status :  for frontend
 
 
 

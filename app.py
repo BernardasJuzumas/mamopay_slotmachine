@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, session
 from flask_session import Session
 import config
+import game_logic
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -36,6 +37,36 @@ def cash_out():
     return jsonify({
         "message": "Successfully cashed out",
         "credits": credits
+    })
+
+@app.route('/roll', methods=['POST'])
+def roll():
+    if 'username' not in session:
+        return jsonify({"error": "No active session found"}), 404
+    
+    if session['credits'] < config.ROLL_COST:
+        return jsonify({"error": "Not enough credits to roll"}), 400
+    
+    #subtract cost for roll
+    session['credits'] -= config.ROLL_COST
+    
+    symbols = game_logic.roll(session['credits'])
+    reward = game_logic.calculate_reward(symbols)
+    
+    #add reward if any
+    session['credits'] += reward
+    
+    return jsonify({
+        "symbols": symbols,
+        "reward": reward,
+        "credits": session['credits']
+    })
+@app.route('/get_session_status', methods=['POST'])
+def session_status():
+    if 'username' not in session:
+        return jsonify({"error": "No active session found"}), 404
+    return jsonify({
+        "credits": session['credits']
     })
 
 if __name__ == '__main__':
