@@ -1,11 +1,11 @@
-import os
-import secrets
+# import os
+# import secrets
 
 # Session configuration
 SESSION_TYPE = 'filesystem'
 SESSION_PERMANENT = False
 SESSION_USE_SIGNER = True
-SECRET_KEY = os.environ.get('SECRET_KEY') or secrets.token_hex(16)
+SECRET_KEY = "mamopay" #We use hardcoded key for persistence of sessions. the correct implementation is to use os.environ.get('SECRET_KEY') or secrets.token_hex(16)
 
 # Game configuration
 ROLL_COST = 1

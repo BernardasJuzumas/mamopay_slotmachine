@@ -41,6 +41,30 @@ Follow these instructions to set up and run the Slot Machine Game on your local 
 
 4. Open `http://127.0.0.1:5000/` in your web browser.
 
+### Using Docker
+
+1. Ensure Docker is installed and running on your system.
+
+2. Open a terminal or command prompt and navigate to the project directory:
+   ```
+   cd path\to\slot-machine-game
+   ```
+
+3. Build the Docker image:
+   ```
+   docker build -t slot-machine-game .
+   ```
+
+4. Run the Docker container:
+    ```
+    docker run -p 5000:5000 slot-machine-game
+    ```
+
+4. Open `http://127.0.0.1:5000/` in your web browser.
+
+
+
+
 ## Playing the Game
 
 1. Enter a username and click "Start Game".
