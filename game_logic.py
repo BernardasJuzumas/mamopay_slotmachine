@@ -15,15 +15,16 @@ def roll(credits):
     
 
 def roll_slots():
-    logger.info("Rolled {symbols}")
-    return [random.choice(SYMBOLS) for _ in range(3)]
+    symbols = [random.choice(SYMBOLS) for _ in range(3)]
+    logger.info(f"Rolled {symbols}")
+    return symbols
 
 
 def cheat_roll(reroll_chance):
     symbols = roll_slots()
     #if all symbols are the same check of reroll and reroll
     if len(set(symbols)) == 1 and random.random() < reroll_chance:
-        logger.info("Rerolling")
+        logger.info(f"Rerolling {symbols}")
         return cheat_roll(reroll_chance)
     return symbols
 
