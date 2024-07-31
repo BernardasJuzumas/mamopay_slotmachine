@@ -2,10 +2,19 @@ from flask import Flask, request, jsonify, session
 from flask_session import Session
 import config
 import game_logic
+from flask_cors import CORS
+from flask import send_from_directory
 
 app = Flask(__name__)
 app.config.from_object(config)
+CORS(app)
 Session(app)
+
+
+#Serve frontend
+@app.route('/')
+def serve_frontend():
+    return send_from_directory('frontend', 'index.html')
 
 @app.route('/start_game', methods=['POST'])
 def start_game():

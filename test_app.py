@@ -27,6 +27,21 @@ class TestGameLogic(unittest.TestCase):
             result = game_logic.cheat_roll(0.3)
         self.assertEqual(result, ['C', 'L', 'O'])
 
+    def test_roll_with_different_credit_levels(self):
+        # Test roll with less than 40 credits
+        result = game_logic.roll(30)
+        self.assertEqual(len(result), 3)
+        
+        # Test roll with credits between 40 and 60
+        with patch('game_logic.random.random', return_value=0.2):  # Ensure re-roll
+            result = game_logic.roll(50)
+        self.assertEqual(len(result), 3)
+        
+        # Test roll with more than 60 credits
+        with patch('game_logic.random.random', return_value=0.5):  # Ensure re-roll
+            result = game_logic.roll(70)
+        self.assertEqual(len(result), 3)
+
 class TestFlaskApp(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
