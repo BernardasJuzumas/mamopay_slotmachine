@@ -1,3 +1,8 @@
+#
+
+
+
+
 # Assignment
 ## The House Always Wins
 ### Objective
@@ -77,6 +82,8 @@ Due to time constraints will do session name = username, to mock ability to come
  - /roll (username): checks if session exists, enough credits to roll, rolls if so and updates funds. Returns relevant statuses.
  - /cash_out (username): if session exists - performs a cashout and deletes it.
  - /get_session_status :  for frontend
+
+
 
 
 
